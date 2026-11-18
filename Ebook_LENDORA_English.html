@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LENDORA — Digital Library E-Book</title>
+  <style>
+    :root { --ink:#1e1b4b; --muted:#596579; --purple:#5146d8; --orange:#f97316; --pale:#eef2ff; --line:#dfe3f3; }
+    * { box-sizing:border-box; }
+    @page { size:A5 portrait; margin:0; }
+    body { margin:0; color:var(--ink); background:#e9eaf3; font-family:"Segoe UI",Arial,sans-serif; }
+    .toolbar { position:sticky; top:0; z-index:3; display:flex; justify-content:center; gap:12px; padding:12px; background:#211d51; color:#fff; }
+    .toolbar button { border:0; border-radius:8px; padding:9px 14px; background:#fbbf24; color:#211d51; font-weight:750; cursor:pointer; }
+    .toolbar span { align-self:center; font-size:13px; }
+    .book { width:148mm; margin:18px auto; }
+    .page { position:relative; display:flex; flex-direction:column; width:148mm; height:210mm; margin:0 auto 18px; padding:16mm 15mm 14mm; overflow:hidden; background:#fff; box-shadow:0 8px 26px #1e1b4b22; page-break-after:always; }
+    .page:last-child { page-break-after:auto; }
+    .cover { justify-content:space-between; padding:18mm 15mm 15mm; background:linear-gradient(145deg,#272466,#5146d8 62%,#7c3aed); color:#fff; }
+    .cover:before,.cover:after { position:absolute; content:""; border-radius:50%; background:#fff; opacity:.07; }
+    .cover:before { width:100mm; height:100mm; right:-48mm; top:28mm; }
+    .cover:after { width:75mm; height:75mm; left:-38mm; bottom:20mm; }
+    .brand { position:relative; z-index:1; display:flex; align-items:center; gap:10px; }
+    .brand-mark { display:grid; width:15mm; height:15mm; place-items:center; border-radius:5mm; background:#fff; color:var(--purple); font-size:25px; font-weight:900; }
+    .brand strong { display:block; font-size:17px; letter-spacing:1.4px; }
+    .brand small { display:block; margin-top:3px; color:#ddd6fe; font-size:8px; font-weight:700; letter-spacing:1px; }
+    .cover-main { position:relative; z-index:1; margin-top:18mm; }
+    .eyebrow { color:#fcd34d; font-size:8px; font-weight:800; letter-spacing:2px; }
+    h1 { margin:8mm 0 4mm; font-size:36px; line-height:1.03; letter-spacing:-1.3px; }
+    .cover-sub { max-width:90mm; color:#ede9fe; font-size:13px; line-height:1.55; }
+    .cover-book { position:relative; z-index:1; display:flex; align-items:end; gap:4mm; height:43mm; margin:8mm auto 0; }
+    .book-shape { position:relative; width:24mm; height:36mm; border:2px solid #fff9; border-radius:2mm 4mm 4mm 2mm; box-shadow:4px 5px 0 #16143a55; }
+    .book-shape:before { position:absolute; top:0; bottom:0; left:4mm; width:1px; background:#fff8; content:""; }
+    .book-shape:after { position:absolute; top:9mm; right:3mm; left:7mm; height:1px; background:#fff9; box-shadow:0 3mm #fff9,0 6mm #fff9; content:""; }
+    .b1 { height:32mm; background:#f97316; transform:rotate(-8deg); }.b2 { background:#16a394; transform:rotate(4deg); }.b3 { height:40mm; background:#8b5cf6; transform:rotate(8deg); }
+    .cover-bottom { position:relative; z-index:1; border-top:1px solid #ffffff55; padding-top:7mm; color:#e0e7ff; font-size:9px; line-height:1.7; }
+    .cover-bottom strong { color:#fff; }
+    .page-kicker { margin-bottom:5mm; color:var(--purple); font-size:8px; font-weight:850; letter-spacing:2px; }
+    h2 { margin:0 0 5mm; color:var(--ink); font-size:23px; line-height:1.15; letter-spacing:-.4px; }
+    h3 { margin:5mm 0 2mm; color:var(--purple); font-size:12px; }
+    p { margin:0 0 3.2mm; color:#374151; font-size:10.1px; line-height:1.55; text-align:justify; }
+    ul,ol { margin:1mm 0 4mm; padding-left:5mm; color:#374151; font-size:9.7px; line-height:1.5; }
+    li { margin-bottom:2mm; padding-left:1mm; }
+    .callout { margin:3mm 0; padding:4mm; border-left:3px solid var(--orange); border-radius:0 3mm 3mm 0; background:#fff7ed; color:#713f12; font-size:9.4px; line-height:1.5; }
+    .feature-grid { display:grid; grid-template-columns:1fr 1fr; gap:3mm; margin:2mm 0 4mm; }
+    .feature { min-height:25mm; padding:3.5mm; border:1px solid var(--line); border-radius:3mm; background:linear-gradient(145deg,#fff,#f7f7ff); }
+    .feature b { display:block; margin-bottom:1.5mm; color:var(--ink); font-size:9.5px; }
+    .feature span { display:block; color:var(--muted); font-size:8.5px; line-height:1.45; }
+    .steps { counter-reset:step; list-style:none; padding:0; }
+    .steps li { position:relative; min-height:16mm; margin:0 0 2mm; padding:0 0 2mm 10mm; border-bottom:1px solid #eef0f7; }
+    .steps li:before { position:absolute; left:0; top:0; display:grid; width:7mm; height:7mm; place-items:center; border-radius:50%; background:var(--purple); color:#fff; font-size:9px; font-weight:800; counter-increment:step; content:counter(step); }
+    .steps b { color:var(--ink); }.steps span { display:block; margin-top:1mm; }
+    .toc { list-style:none; margin:2mm 0; padding:0; }
+    .toc li { display:flex; gap:3mm; align-items:baseline; margin:0; padding:4mm 0; border-bottom:1px solid var(--line); font-size:11px; }
+    .toc .n { color:var(--orange); font-weight:900; }.toc .leader { flex:1; border-bottom:1px dotted #a5a9bd; }.toc .page-no { color:var(--muted); font-size:9px; }
+    .quote { margin:7mm 0; padding:7mm 6mm; border-radius:4mm; background:var(--pale); color:#3730a3; font-size:14px; font-weight:800; line-height:1.45; text-align:center; }
+    .end-card { margin-top:auto; padding:6mm; border-radius:4mm; background:linear-gradient(120deg,#312e81,#7c3aed); color:#fff; font-size:10px; line-height:1.6; }
+    .end-card a { color:#fcd34d; font-weight:800; }
+    .page-footer { display:flex; justify-content:space-between; margin-top:auto; padding-top:4mm; border-top:1px solid var(--line); color:#7c8496; font-size:8px; }
+    .author { margin-top:6mm; padding:4mm; border:1px solid #ddd6fe; border-radius:3mm; color:var(--muted); font-size:9px; line-height:1.8; }
+    @media print { body{background:#fff;print-color-adjust:exact;-webkit-print-color-adjust:exact}.toolbar{display:none}.book{width:auto;margin:0}.page{margin:0;box-shadow:none} }
+  </style>
+</head>
+<body>
+  <nav class="toolbar" aria-label="Document controls"><span>A5 document ready to print as PDF</span><button onclick="window.print()">Print / Save as PDF</button></nav>
+  <main class="book">
+    <section class="page cover">
+      <div class="brand"><div class="brand-mark">L</div><div><strong>LENDORA</strong><small>DIGITAL LIBRARY</small></div></div>
+      <div class="cover-main"><div class="eyebrow">WEBSITE GUIDE E-BOOK</div><h1>LENDORA<br>Digital Library</h1><p class="cover-sub">A guide to the features, technology, and use of the digital library website of SMK Negeri 5 Surakarta.</p><div class="cover-book" aria-hidden="true"><div class="book-shape b1"></div><div class="book-shape b2"></div><div class="book-shape b3"></div></div></div>
+      <div class="cover-bottom"><strong>Prepared by:</strong><br>Name: ....................................................<br>Class: ............................ &nbsp; Study Program: ............................<br>SMK Negeri 5 Surakarta · 2026</div>
+    </section>
+    <section class="page">
+      <div class="page-kicker">READER'S GUIDE</div><h2>Contents</h2><p>Learn about LENDORA and follow the guide to explore the catalogue and use the library loan service.</p>
+      <ol class="toc">
+        <li><span class="n">01</span><span>Introduction</span><span class="leader"></span><span class="page-no">3</span></li>
+        <li><span class="n">02</span><span>Website Features</span><span class="leader"></span><span class="page-no">4</span></li>
+        <li><span class="n">03</span><span>Development Tools and Materials</span><span class="leader"></span><span class="page-no">5</span></li>
+        <li><span class="n">04</span><span>How to Use the Website</span><span class="leader"></span><span class="page-no">6</span></li>
+        <li><span class="n">05</span><span>Conclusion</span><span class="leader"></span><span class="page-no">7</span></li>
+      </ol>
+      <div class="quote">“Read today,<br>lead tomorrow.”</div>
+      <div class="callout"><b>Website:</b><br>https://lendora.infinityfree.me/</div>
+      <div class="page-footer"><span>LENDORA · Website Guide</span><span>2</span></div>
+    </section>
+    <section class="page">
+      <div class="page-kicker">01 · INTRODUCTION</div><h2>The library,<br>closer through digital access.</h2>
+      <p>A school library helps students find reading materials and learning resources. LENDORA was developed as the digital library website of SMK Negeri 5 Surakarta to make collection information and library services easier to access.</p>
+      <p>Students can browse the catalogue, search for books, register or sign in, submit loan requests, and check their loan status. Administrators or library staff manage collections and student records, process requests, record returns, verify fine payments, and prepare reports.</p>
+      <h3>Project goals</h3>
+      <ul><li>Help students find book information and recorded availability.</li><li>Support online book loan requests.</li><li>Help staff manage books, categories, students, and transactions in one system.</li><li>Keep return, fine, and payment records organised.</li></ul>
+      <div class="callout">LENDORA manages library collections and lending services; it is not a full e-book reading platform or an online bookstore.</div>
+      <div class="page-footer"><span>LENDORA · Introduction</span><span>3</span></div>
+    </section>
+    <section class="page">
+      <div class="page-kicker">02 · WEBSITE FEATURES</div><h2>Services at a glance</h2>
+      <p>Features depend on the user's role. The catalogue and general information are public, while some transactions and management tasks require an account.</p>
+      <div class="feature-grid">
+        <div class="feature"><b>Catalogue and search</b><span>Browse books and search by title, author, or publisher.</span></div>
+        <div class="feature"><b>Book details</b><span>View book information, category, and recorded availability.</span></div>
+        <div class="feature"><b>Student accounts</b><span>Register and sign in to access the dashboard and lending services.</span></div>
+        <div class="feature"><b>Loan requests</b><span>Students submit a request; staff review and approve or reject it.</span></div>
+        <div class="feature"><b>Returns and fines</b><span>Staff record returns, book condition, and applicable fines.</span></div>
+        <div class="feature"><b>Payment evidence</b><span>Students submit evidence for staff review and payment confirmation.</span></div>
+        <div class="feature"><b>Dashboard and notices</b><span>Summaries and notifications help users follow updates.</span></div>
+        <div class="feature"><b>Staff reports</b><span>Staff can view history, download reports, and print available receipts.</span></div>
+      </div>
+      <div class="callout"><b>Payment note:</b> the DANA QR used by the site is static. Follow the displayed payment instructions and confirm the amount; staff verify payment manually rather than the system confirming it automatically.</div>
+      <div class="page-footer"><span>LENDORA · Website Features</span><span>4</span></div>
+    </section>
+    <section class="page">
+      <div class="page-kicker">03 · DEVELOPMENT TOOLS AND MATERIALS</div><h2>What went into the website</h2>
+      <p>LENDORA was developed using computer equipment, software, library data, and visual assets.</p>
+      <h3>Tools and software</h3>
+      <ul>
+        <li><b>Laptop or computer:</b> to write code and run the application.</li>
+        <li><b>Visual Studio Code:</b> code editor for the project.</li>
+        <li><b>PHP and Laravel:</b> application logic and server-rendered pages.</li>
+        <li><b>MySQL:</b> storage for accounts, books, categories, and loans.</li>
+        <li><b>Composer:</b> PHP dependency management.</li>
+        <li><b>Node.js and Vite:</b> front-end asset tooling.</li>
+        <li><b>Blade, Tailwind CSS, and a web browser:</b> interface development and review.</li>
+        <li><b>InfinityFree hosting:</b> publishing the website on the internet.</li>
+      </ul>
+      <h3>Project materials</h3>
+      <ul><li>Requirements and role-access plan for students and administrators.</li><li>Sample book, category, stock, and loan data.</li><li>School logo, book cover images, interface text, and service rules.</li><li>Database structure for users, books, categories, loans, and notifications.</li></ul>
+      <div class="callout">Technology versions may change with the project configuration. Sample data is useful during development but should not replace official library records.</div>
+      <div class="page-footer"><span>LENDORA · Tools and Materials</span><span>5</span></div>
+    </section>
+    <section class="page">
+      <div class="page-kicker">04 · HOW TO USE THE WEBSITE</div><h2>Start with the catalogue</h2>
+      <ol class="steps">
+        <li><b>Open the website</b><span>Visit https://lendora.infinityfree.me/ in a browser on a phone, tablet, or computer.</span></li>
+        <li><b>Browse the catalogue</b><span>Open the catalogue to see books. Use search and categories to find a collection.</span></li>
+        <li><b>Check book details</b><span>Select a book to review its information and displayed availability.</span></li>
+        <li><b>Register or sign in</b><span>Create a student account using Register, or sign in with an existing account.</span></li>
+        <li><b>Submit a loan request</b><span>Select a book and provide dates according to the stated rules. Staff must review the request.</span></li>
+        <li><b>Check your status</b><span>Review the dashboard, loan history, and notifications for staff decisions.</span></li>
+        <li><b>Return the book</b><span>Return the book according to its due date. Staff record the return date and condition.</span></li>
+        <li><b>Follow fine instructions</b><span>If a fine applies, follow the available payment instructions, submit evidence if requested, and wait for staff verification.</span></li>
+      </ol>
+      <div class="callout"><b>Tip:</b> use your own email and password, do not share them, and contact school staff if an account detail or transaction status needs correction.</div>
+      <div class="page-footer"><span>LENDORA · User Guide</span><span>6</span></div>
+    </section>
+    <section class="page">
+      <div class="page-kicker">05 · CONCLUSION</div><h2>Learning and reading,<br>within easier reach.</h2>
+      <p>LENDORA connects the library catalogue with student and staff services through a website. Searching, loan requests, status tracking, data management, return records, and reports are part of one system.</p>
+      <p>Future improvements may include broader testing, better accessibility, updated catalogue information, and a smoother user experience. Accurate records and staff verification remain important for reliable service.</p>
+      <div class="quote">“Books open a window to knowledge.<br>LENDORA helps us find them.”</div>
+      <div class="end-card"><b>Visit LENDORA</b><br>https://lendora.infinityfree.me/<br><br>Digital Library · SMK Negeri 5 Surakarta</div>
+      <div class="author">Before submission, complete your name, class, and study program on the cover page.</div>
+      <div class="page-footer"><span>LENDORA · End of E-Book</span><span>7</span></div>
+    </section>
+  </main>
+</body>
+</html>

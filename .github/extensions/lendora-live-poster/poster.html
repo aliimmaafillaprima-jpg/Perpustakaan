@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poster LENDORA — Tampilan Website Asli</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #1e1b4b;
+      background: #eef2ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; }
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(250px, 320px) minmax(0, 1fr);
+      min-height: 100vh;
+    }
+    .controls {
+      padding: 24px;
+      background: #fff;
+      border-right: 1px solid #dbe3ff;
+    }
+    h1 { margin: 0 0 8px; font-size: 22px; }
+    .intro { margin: 0 0 22px; color: #64748b; font-size: 14px; line-height: 1.5; }
+    label { display: block; margin: 16px 0 6px; font-size: 13px; font-weight: 700; }
+    input, textarea {
+      width: 100%;
+      padding: 10px 11px;
+      border: 1px solid #c7d2fe;
+      border-radius: 9px;
+      color: #1e1b4b;
+      font: inherit;
+    }
+    textarea { min-height: 76px; resize: vertical; }
+    input:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+      outline: 3px solid #f59e0b;
+      outline-offset: 2px;
+    }
+    .actions { display: grid; gap: 9px; margin-top: 20px; }
+    button {
+      padding: 11px 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #4f46e5;
+      color: #fff;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+    button.secondary { background: #eef2ff; color: #3730a3; }
+    .note { margin-top: 17px; color: #64748b; font-size: 12px; line-height: 1.55; }
+    .preview-area {
+      display: grid;
+      place-items: start center;
+      overflow: auto;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 12% 10%, #ddd6fe 0, transparent 26%),
+        linear-gradient(135deg, #eef2ff, #f8fafc 58%, #ecfdf5);
+    }
+    .stage { position: relative; width: min(100%, 794px); aspect-ratio: 794 / 1123; }
+    .poster {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      width: 794px;
+      height: 1123px;
+      transform: scale(var(--poster-scale, 1));
+      transform-origin: top left;
+      background: linear-gradient(145deg, #f7f8ff 0%, #edf3ff 52%, #effaf2 100%);
+      box-shadow: 0 20px 60px #312e8130;
+    }
+    .poster::before {
+      position: absolute;
+      top: -105px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: #c4b5fd75;
+      content: "";
+    }
+    .poster::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 185px;
+      background: linear-gradient(160deg, #e0e7ff, #ddd6feaa);
+      clip-path: polygon(0 28%, 20% 12%, 42% 31%, 68% 7%, 100% 20%, 100% 100%, 0 100%);
+      content: "";
+    }
+    .poster-content { position: relative; z-index: 1; padding: 42px 48px; }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .brand-mark {
+      display: block;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      object-fit: contain;
+    }
+    .brand-name { font-size: 21px; font-weight: 900; letter-spacing: 1px; }
+    .brand-school { margin-top: 1px; color: #64748b; font-size: 9px; font-weight: 750; letter-spacing: 1.1px; }
+    .school-pill {
+      margin-left: auto;
+      padding: 9px 13px;
+      border-radius: 18px;
+      background: #fff;
+      color: #3730a3;
+      font-size: 9px;
+      font-weight: 800;
+    }
+    .eyebrow {
+      margin: 34px 0 10px;
+      color: #4f46e5;
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: 2px;
+    }
+    .headline { max-width: 700px; margin: 0; font-size: 43px; line-height: 1.06; font-weight: 900; letter-spacing: -1.4px; }
+    .headline span { color: #5b4be7; }
+    .subhead { max-width: 640px; margin: 13px 0 22px; color: #526179; font-size: 13px; line-height: 1.5; }
+    .device-row { position: relative; height: 430px; margin: 0 -7px; }
+    .laptop {
+      position: absolute;
+      top: 17px;
+      left: 4px;
+      width: 600px;
+    }
+    .laptop-bezel {
+      padding: 10px;
+      border-radius: 19px 19px 12px 12px;
+      background: #201d50;
+      box-shadow: 0 12px 25px #312e8133;
+    }
+    .laptop-screen {
+      width: 580px;
+      height: 263px;
+      overflow: hidden;
+      border-radius: 9px;
+      background: #fff;
+    }
+    .site-shot {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #fff;
+    }
+    .landing-shot { object-position: center center; }
+    .laptop-base {
+      height: 18px;
+      margin: 0 -24px;
+      border-radius: 0 0 28px 28px;
+      background: linear-gradient(#a5b4fc, #818cf8);
+    }
+    .laptop-base::after {
+      display: block;
+      width: 190px;
+      height: 5px;
+      margin: 0 auto;
+      border-radius: 0 0 8px 8px;
+      background: #c7d2fe;
+      content: "";
+    }
+    .phone {
+      position: absolute;
+      z-index: 3;
+      top: 95px;
+      right: 7px;
+      width: 162px;
+      height: 307px;
+      padding: 4px;
+      border: 5px solid #211d51;
+      border-radius: 28px;
+      background: #211d51;
+      box-shadow: 0 14px 28px #312e8140;
+    }
+    .phone-screen { width: 144px; height: 276px; overflow: hidden; border-radius: 20px; background: #fff; }
+    .login-shot { object-position: center top; }
+    .device-label {
+      position: absolute;
+      z-index: 4;
+      top: 45px;
+      right: -1px;
+      padding: 6px 9px;
+      border-radius: 12px;
+      background: #fbbf24;
+      color: #312e81;
+      font-size: 8px;
+      font-weight: 850;
+      letter-spacing: .5px;
+    }
+    .live-link {
+      position: absolute;
+      z-index: 4;
+      right: 3px;
+      bottom: 8px;
+      display: block;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 9px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: -1px; }
+    .feature {
+      min-height: 101px;
+      padding: 14px 12px;
+      border: 1px solid #e0e7ff;
+      border-radius: 15px;
+      background: #ffffffed;
+      box-shadow: 0 6px 15px #312e8110;
+    }
+    .feature-icon { display: grid; width: 29px; height: 29px; place-items: center; border-radius: 10px; background: #eef2ff; color: #4f46e5; font-size: 16px; }
+    .feature strong { display: block; margin-top: 8px; font-size: 11px; }
+    .feature p { margin: 4px 0 0; color: #64748b; font-size: 9px; line-height: 1.35; }
+    .footer {
+      position: relative;
+      z-index: 2;
+      margin-top: 20px;
+      padding: 19px 22px;
+      border-radius: 18px;
+      background: linear-gradient(120deg, #312e81, #4f46e5 70%, #7c3aed);
+      color: #fff;
+    }
+    .footer-label { color: #c7d2fe; font-size: 9px; font-weight: 850; letter-spacing: 1.8px; }
+    .url { display: inline-block; margin-top: 8px; color: #fff; font-size: 18px; font-weight: 850; text-decoration: none; }
+    .slogan { margin: 8px 0 0; color: #fef3c7; font-size: 12px; font-weight: 700; }
+    .credit { margin-top: 12px; color: #64748b; font-size: 9px; font-weight: 650; }
+    .mobile-note { display: none; }
+    @media (max-width: 760px) {
+      .workspace { grid-template-columns: 1fr; }
+      .controls { border-right: 0; border-bottom: 1px solid #dbe3ff; }
+      .preview-area { padding: 16px; }
+      .mobile-note { display: block; }
+    }
+    @media print {
+      @page { size: A4 portrait; margin: 0; }
+      :root, body { width: 210mm; height: 297mm; background: #fff; }
+      .controls { display: none !important; }
+      .workspace { display: block; min-height: 0; }
+      .preview-area { display: block; overflow: visible; width: 210mm; height: 297mm; padding: 0; background: #fff; }
+      .stage { width: 210mm; height: 297mm; }
+      .poster { width: 794px; height: 1123px; transform: scale(.997); transform-origin: top left; box-shadow: none; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .laptop, .phone { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <main class="workspace">
+    <aside class="controls" aria-label="Pengaturan poster">
+      <h1>Poster LENDORA</h1>
+      <p class="intro">Pratinjau perangkat menggunakan halaman website yang sedang di-host, bukan gambar katalog rekaan. Teks promosi dapat diubah di sini.</p>
+      <label for="headline-one">Judul baris pertama</label>
+      <input id="headline-one" value="Temukan bacaan.">
+      <label for="headline-two">Judul baris kedua</label>
+      <input id="headline-two" value="Mulai petualangan.">
+      <label for="subhead">Deskripsi singkat</label>
+      <textarea id="subhead">Cari buku, ajukan peminjaman, dan jelajahi layanan perpustakaan sekolah lewat LENDORA.</textarea>
+      <label for="slogan">Slogan</label>
+      <input id="slogan" value="Membaca hari ini, memimpin hari esok.">
+      <div class="actions">
+        <button id="print-poster" type="button">Cetak / Simpan PDF A4</button>
+        <button id="reload-site" class="secondary" type="button">Muat ulang screenshot</button>
+      </div>
+      <p class="note" role="status" id="status">Poster memakai screenshot asli landing page dan login yang kamu kirim.</p>
+      <p class="note">Kedua gambar di dalam perangkat adalah screenshot asli yang kamu unggah. Teks promosi di poster dapat diedit; screenshot dipertahankan apa adanya agar bukan hasil rekayasa.</p>
+      <p class="note mobile-note">Untuk mengedit teks, ubah kotak di atas. Gunakan “Cetak / Simpan PDF A4”, lalu pilih printer atau Save as PDF.</p>
+    </aside>
+    <section class="preview-area" aria-label="Pratinjau poster A4">
+      <div class="stage" id="stage">
+        <article class="poster" id="poster">
+          <div class="poster-content">
+            <header class="brand">
+              <img class="brand-mark" src="https://lendora.infinityfree.me/images/logo_smk.jpg" alt="Logo SMK Negeri 5 Surakarta">
+              <div>
+                <div class="brand-name">LENDORA</div>
+                <div class="brand-school">PERPUSTAKAAN DIGITAL</div>
+              </div>
+              <div class="school-pill">SMK NEGERI 5 SURAKARTA</div>
+            </header>
+            <p class="eyebrow">SATU WEBSITE, BANYAK CERITA</p>
+            <h2 class="headline"><span id="headline-one-view">Temukan bacaan.</span><br><span id="headline-two-view">Mulai petualangan.</span></h2>
+            <p class="subhead" id="subhead-view">Cari buku, ajukan peminjaman, dan jelajahi layanan perpustakaan sekolah lewat LENDORA.</p>
+            <div class="device-row" aria-label="Tampilan website LENDORA di laptop dan ponsel">
+              <div class="laptop">
+                <div class="laptop-bezel">
+                  <div class="laptop-screen">
+                    <img class="site-shot landing-shot" src="./assets/lendora-landing.png" alt="Screenshot asli landing page LENDORA dari website yang di-host">
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+              </div>
+              <span class="device-label">TAMPILAN WEBSITE ASLI</span>
+              <div class="phone">
+                <div class="phone-screen">
+                  <img class="site-shot login-shot" src="./assets/lendora-login.png" alt="Screenshot asli halaman login LENDORA dari website yang di-host">
+                </div>
+              </div>
+              <a class="live-link" href="https://lendora.infinityfree.me/" target="_blank" rel="noopener noreferrer">Buka website asli ↗</a>
+            </div>
+            <section class="features" aria-label="Fitur LENDORA">
+              <div class="feature"><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span><strong>Cari koleksi dengan mudah</strong><p>Jelajahi koleksi buku melalui katalog.</p></div>
+              <div class="feature"><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18.5V5a2 2 0 0 1 2-2c3 0 5 1 7 3 2-2 4-3 7-3a2 2 0 0 1 2 2v13.5a1 1 0 0 1-1 1c-3 0-5 .5-8 2-3-1.5-5-2-8-2a1 1 0 0 1-1-1Z"/></svg></span><strong>Ajukan peminjaman online</strong><p>Ajukan buku tanpa antre panjang.</p></div>
+              <div class="feature"><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><strong>Akses dari perangkatmu</strong><p>Gunakan HP, tablet, atau laptop.</p></div>
+            </section>
+            <footer class="footer">
+              <div class="footer-label">KUNJUNGI WEBSITE KAMI</div>
+              <a class="url" href="https://lendora.infinityfree.me/" target="_blank" rel="noopener noreferrer">https://lendora.infinityfree.me/</a>
+              <p class="slogan" id="slogan-view">“Membaca hari ini, memimpin hari esok.”</p>
+            </footer>
+            <div class="credit">LENDORA · SMK Negeri 5 Surakarta</div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script>
+    const fields = [
+      ["headline-one", "headline-one-view"],
+      ["headline-two", "headline-two-view"],
+      ["subhead", "subhead-view"],
+      ["slogan", "slogan-view"],
+    ];
+    for (const [inputId, outputId] of fields) {
+      const input = document.getElementById(inputId);
+      const output = document.getElementById(outputId);
+      input.addEventListener("input", () => {
+        output.textContent = inputId === "slogan" ? `“${input.value}”` : input.value;
+      });
+    }
+    document.getElementById("print-poster").addEventListener("click", () => window.print());
+    document.getElementById("reload-site").addEventListener("click", () => {
+      for (const image of document.querySelectorAll(".site-shot")) {
+        const source = image.src.split("?")[0];
+        image.src = `${source}?reload=${Date.now()}`;
+      }
+      document.getElementById("status").textContent = "Memuat ulang screenshot yang diunggah…";
+    });
+    for (const image of document.querySelectorAll(".site-shot")) {
+      image.addEventListener("load", () => {
+        document.getElementById("status").textContent = "Screenshot asli landing page dan login LENDORA siap ditampilkan.";
+      });
+      image.addEventListener("error", () => {
+        document.getElementById("status").textContent = "Screenshot tidak ditemukan. Pastikan folder assets berada di samping poster.html.";
+      });
+    }
+    const poster = document.getElementById("poster");
+    const stage = document.getElementById("stage");
+    const resizeObserver = new ResizeObserver(() => {
+      const scale = Math.min(stage.clientWidth / 794, stage.clientHeight / 1123);
+      poster.style.setProperty("--poster-scale", String(scale));
+    });
+    resizeObserver.observe(stage);
+  </script>
+</body>
+</html>

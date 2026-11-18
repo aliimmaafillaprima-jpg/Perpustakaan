@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-labelledby="title desc">
+  <title id="title">LENDORA — Perpustakaan Digital SMK Negeri 5 Surakarta</title>
+  <desc id="desc">Poster promosi website LENDORA dengan alamat website untuk dikunjungi.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#312e81"/>
+      <stop offset=".48" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="book1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fb7185"/>
+      <stop offset="1" stop-color="#e11d48"/>
+    </linearGradient>
+    <linearGradient id="book2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="book3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#1e1b4b" flood-opacity=".24"/>
+    </filter>
+    <style>
+      .sans { font-family: "Aptos", "Segoe UI", Arial, sans-serif; }
+      .white { fill: #ffffff; }
+      .ink { fill: #1e1b4b; }
+      .muted { fill: #64748b; }
+    </style>
+  </defs>
+
+  <rect width="1080" height="1350" fill="url(#background)"/>
+  <circle cx="1010" cy="70" r="220" fill="#a78bfa" opacity=".23"/>
+  <circle cx="18" cy="950" r="205" fill="#818cf8" opacity=".2"/>
+  <circle cx="925" cy="1125" r="145" fill="#f0abfc" opacity=".16"/>
+  <path d="M0 1140 C220 1080 330 1195 530 1150 C750 1100 870 1010 1080 1050 V1350 H0Z" fill="#312e81" opacity=".28"/>
+
+  <g transform="translate(68 58)">
+    <rect width="68" height="68" rx="20" fill="url(#orange)"/>
+    <path d="M34 16 C23 11 14 14 9 18 V50 C18 46 27 47 34 52 C41 47 50 46 59 50 V18 C54 14 45 11 34 16Z" fill="#fff" stroke="#312e81" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M34 17 V51 M17 27 H28 M17 34 H28 M40 27 H51 M40 34 H51" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <text x="154" y="87" class="sans white" font-size="29" font-weight="850" letter-spacing="1.5">LENDORA</text>
+  <text x="155" y="116" class="sans" font-size="16" font-weight="550" fill="#ddd6fe">PERPUSTAKAAN DIGITAL</text>
+  <rect x="770" y="69" width="242" height="42" rx="21" fill="#ffffff" opacity=".15"/>
+  <circle cx="795" cy="90" r="6" fill="#fbbf24"/>
+  <text x="811" y="96" class="sans white" font-size="15" font-weight="650">SMK NEGERI 5 SURAKARTA</text>
+
+  <text x="70" y="237" class="sans" font-size="18" font-weight="800" letter-spacing="3" fill="#fcd34d">TEMUKAN BUKU FAVORITMU</text>
+  <text x="66" y="326" class="sans white" font-size="72" font-weight="900" letter-spacing="-2">Baca Lebih Mudah.</text>
+  <text x="66" y="405" class="sans white" font-size="72" font-weight="900" letter-spacing="-2">Pinjam Lebih Praktis.</text>
+  <text x="72" y="462" class="sans" font-size="23" font-weight="450" fill="#e0e7ff">
+    <tspan x="72" dy="0">Jelajahi koleksi perpustakaan dan ajukan peminjaman</tspan>
+    <tspan x="72" dy="33">buku secara online melalui LENDORA.</tspan>
+  </text>
+
+  <g filter="url(#shadow)">
+    <rect x="650" y="504" width="348" height="464" rx="42" fill="#17153f"/>
+    <rect x="666" y="520" width="316" height="432" rx="31" fill="url(#panel)"/>
+    <rect x="779" y="530" width="90" height="13" rx="7" fill="#c7d2fe"/>
+    <text x="693" y="585" class="sans ink" font-size="18" font-weight="800">Katalog Buku</text>
+    <text x="693" y="612" class="sans muted" font-size="13">Cari bacaan berikutnya</text>
+    <rect x="692" y="630" width="264" height="43" rx="14" fill="#e8eafc"/>
+    <circle cx="711" cy="650" r="7" fill="none" stroke="#6366f1" stroke-width="2"/>
+    <path d="M716 655 L722 661" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+    <text x="732" y="656" class="sans muted" font-size="13">Cari judul atau penulis...</text>
+    <text x="693" y="708" class="sans ink" font-size="14" font-weight="750">Pilihan untukmu</text>
+
+    <rect x="692" y="724" width="264" height="66" rx="15" fill="#ffffff"/>
+    <rect x="704" y="733" width="46" height="48" rx="8" fill="url(#book1)"/>
+    <path d="M714 743 H740 M714 750 H736 M714 757 H738" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+    <text x="762" y="750" class="sans ink" font-size="13" font-weight="750">How to Win Friends</text>
+    <text x="762" y="771" class="sans muted" font-size="11">Dale Carnegie</text>
+    <circle cx="936" cy="757" r="11" fill="#eef2ff"/>
+    <path d="M932 757 H940 M936 753 V761" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+
+    <rect x="692" y="800" width="264" height="66" rx="15" fill="#ffffff"/>
+    <rect x="704" y="809" width="46" height="48" rx="8" fill="url(#book2)"/>
+    <path d="M714 819 H740 M714 826 H736 M714 833 H738" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+    <text x="762" y="826" class="sans ink" font-size="13" font-weight="750">Mindset</text>
+    <text x="762" y="847" class="sans muted" font-size="11">Carol S. Dweck</text>
+    <circle cx="936" cy="833" r="11" fill="#eef2ff"/>
+    <path d="M932 833 H940 M936 829 V837" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+
+    <rect x="692" y="876" width="264" height="58" rx="16" fill="url(#orange)"/>
+    <text x="824" y="912" text-anchor="middle" class="sans" font-size="15" font-weight="850" fill="#312e81">JELAJAHI KATALOG</text>
+  </g>
+
+  <g transform="translate(80 553)">
+    <circle cx="38" cy="38" r="29" fill="#ffffff" opacity=".13"/>
+    <path d="M25 29 C25 25 29 22 33 25 L38 29 L43 25 C47 22 51 25 51 29 V48 C51 52 47 54 43 51 L38 47 L33 51 C29 54 25 52 25 48Z" fill="none" stroke="#fcd34d" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M38 29 V47" stroke="#fcd34d" stroke-width="2.5"/>
+    <text x="86" y="31" class="sans white" font-size="22" font-weight="800">Cari koleksi dengan mudah</text>
+    <text x="86" y="61" class="sans" font-size="17" font-weight="450" fill="#e0e7ff">Telusuri buku dari berbagai kategori.</text>
+  </g>
+  <g transform="translate(80 668)">
+    <circle cx="38" cy="38" r="29" fill="#ffffff" opacity=".13"/>
+    <rect x="25" y="24" width="26" height="29" rx="5" fill="none" stroke="#fcd34d" stroke-width="3"/>
+    <path d="M30 33 H46 M30 40 H46 M30 47 H40" stroke="#fcd34d" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="86" y="31" class="sans white" font-size="22" font-weight="800">Ajukan peminjaman online</text>
+    <text x="86" y="61" class="sans" font-size="17" font-weight="450" fill="#e0e7ff">Ajukan buku tanpa antre panjang.</text>
+  </g>
+  <g transform="translate(80 783)">
+    <circle cx="38" cy="38" r="29" fill="#ffffff" opacity=".13"/>
+    <rect x="28" y="19" width="20" height="37" rx="5" fill="none" stroke="#fcd34d" stroke-width="3"/>
+    <path d="M34 25 H42 M36 50 H40" stroke="#fcd34d" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="86" y="31" class="sans white" font-size="22" font-weight="800">Akses dari perangkatmu</text>
+    <text x="86" y="61" class="sans" font-size="17" font-weight="450" fill="#e0e7ff">Nyaman dibuka lewat HP atau laptop.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="68" y="1030" width="944" height="234" rx="30" fill="#ffffff"/>
+  </g>
+  <text x="104" y="1082" class="sans" font-size="16" font-weight="800" letter-spacing="2.2" fill="#6366f1">MULAI JELAJAHI LENDORA</text>
+  <text x="104" y="1125" class="sans ink" font-size="28" font-weight="850">Perpustakaan sekolah, kini lebih dekat.</text>
+  <text x="104" y="1170" class="sans muted" font-size="17">Buka alamat ini di browser untuk melihat katalog dan layanan:</text>
+  <rect x="104" y="1190" width="858" height="48" rx="14" fill="#eef2ff"/>
+  <circle cx="130" cy="1214" r="9" fill="#22c55e"/>
+  <path d="M126 1214 L129 1217 L135 1210" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="151" y="1222" class="sans" font-size="21" font-weight="800" fill="#3730a3">https://lendora.infinityfree.me/</text>
+
+  <text x="70" y="1310" class="sans" font-size="15" font-weight="550" fill="#e0e7ff">LENDORA  •  SMK Negeri 5 Surakarta</text>
+  <text x="1010" y="1310" text-anchor="end" class="sans" font-size="15" font-weight="550" fill="#e0e7ff">Membaca hari ini, memimpin hari esok.</text>
+</svg>

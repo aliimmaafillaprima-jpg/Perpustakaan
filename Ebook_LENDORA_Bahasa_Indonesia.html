@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LENDORA — E-Book Perpustakaan Digital</title>
+  <style>
+    :root {
+      --ink: #1e1b4b;
+      --muted: #596579;
+      --purple: #5146d8;
+      --violet: #7c3aed;
+      --orange: #f97316;
+      --pale: #eef2ff;
+      --line: #dfe3f3;
+    }
+    * { box-sizing: border-box; }
+    @page { size: A5 portrait; margin: 0; }
+    body { margin: 0; color: var(--ink); background: #e9eaf3; font-family: "Segoe UI", Arial, sans-serif; }
+    .toolbar { position: sticky; top: 0; z-index: 3; display: flex; justify-content: center; gap: 12px; padding: 12px; background: #211d51; color: #fff; }
+    .toolbar button { border: 0; border-radius: 8px; padding: 9px 14px; background: #fbbf24; color: #211d51; font-weight: 750; cursor: pointer; }
+    .toolbar span { align-self: center; font-size: 13px; }
+    .book { width: 148mm; margin: 18px auto; }
+    .page { position: relative; display: flex; flex-direction: column; width: 148mm; height: 210mm; margin: 0 auto 18px; padding: 16mm 15mm 14mm; overflow: hidden; background: #fff; box-shadow: 0 8px 26px #1e1b4b22; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    .cover { justify-content: space-between; padding: 18mm 15mm 15mm; background: linear-gradient(145deg, #272466, #5146d8 62%, #7c3aed); color: #fff; }
+    .cover:before, .cover:after { position: absolute; content: ""; border-radius: 50%; background: #fff; opacity: .07; }
+    .cover:before { width: 100mm; height: 100mm; right: -48mm; top: 28mm; }
+    .cover:after { width: 75mm; height: 75mm; left: -38mm; bottom: 20mm; }
+    .brand { position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; }
+    .brand-mark { display: grid; width: 15mm; height: 15mm; place-items: center; border-radius: 5mm; background: #fff; color: var(--purple); font-size: 25px; font-weight: 900; }
+    .brand strong { display: block; font-size: 17px; letter-spacing: 1.4px; }
+    .brand small { display: block; margin-top: 3px; color: #ddd6fe; font-size: 8px; font-weight: 700; letter-spacing: 1px; }
+    .cover-main { position: relative; z-index: 1; margin-top: 18mm; }
+    .eyebrow { color: #fcd34d; font-size: 8px; font-weight: 800; letter-spacing: 2px; }
+    h1 { margin: 8mm 0 4mm; font-size: 36px; line-height: 1.03; letter-spacing: -1.3px; }
+    .cover-sub { max-width: 90mm; color: #ede9fe; font-size: 13px; line-height: 1.55; }
+    .cover-book { position: relative; z-index: 1; display: flex; align-items: end; gap: 4mm; height: 43mm; margin: 8mm auto 0; }
+    .book-shape { position: relative; width: 24mm; height: 36mm; border: 2px solid #fff9; border-radius: 2mm 4mm 4mm 2mm; box-shadow: 4px 5px 0 #16143a55; }
+    .book-shape:before { position: absolute; top: 0; bottom: 0; left: 4mm; width: 1px; background: #fff8; content: ""; }
+    .book-shape:after { position: absolute; top: 9mm; right: 3mm; left: 7mm; height: 1px; background: #fff9; box-shadow: 0 3mm #fff9, 0 6mm #fff9; content: ""; }
+    .b1 { height: 32mm; background: #f97316; transform: rotate(-8deg); }
+    .b2 { background: #16a394; transform: rotate(4deg); }
+    .b3 { height: 40mm; background: #8b5cf6; transform: rotate(8deg); }
+    .cover-bottom { position: relative; z-index: 1; border-top: 1px solid #ffffff55; padding-top: 7mm; color: #e0e7ff; font-size: 9px; line-height: 1.7; }
+    .cover-bottom strong { color: #fff; }
+    .page-kicker { margin-bottom: 5mm; color: var(--purple); font-size: 8px; font-weight: 850; letter-spacing: 2px; }
+    h2 { margin: 0 0 5mm; color: var(--ink); font-size: 23px; line-height: 1.15; letter-spacing: -.4px; }
+    h3 { margin: 5mm 0 2mm; color: var(--purple); font-size: 12px; }
+    p { margin: 0 0 3.2mm; color: #374151; font-size: 10.1px; line-height: 1.55; text-align: justify; }
+    ul, ol { margin: 1mm 0 4mm; padding-left: 5mm; color: #374151; font-size: 9.7px; line-height: 1.5; }
+    li { margin-bottom: 2mm; padding-left: 1mm; }
+    .callout { margin: 3mm 0; padding: 4mm; border-left: 3px solid var(--orange); border-radius: 0 3mm 3mm 0; background: #fff7ed; color: #713f12; font-size: 9.4px; line-height: 1.5; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin: 2mm 0 4mm; }
+    .feature { min-height: 25mm; padding: 3.5mm; border: 1px solid var(--line); border-radius: 3mm; background: linear-gradient(145deg, #fff, #f7f7ff); }
+    .feature b { display: block; margin-bottom: 1.5mm; color: var(--ink); font-size: 9.5px; }
+    .feature span { display: block; color: var(--muted); font-size: 8.5px; line-height: 1.45; }
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps li { position: relative; min-height: 16mm; margin: 0 0 2mm; padding: 0 0 2mm 10mm; border-bottom: 1px solid #eef0f7; }
+    .steps li:before { position: absolute; left: 0; top: 0; display: grid; width: 7mm; height: 7mm; place-items: center; border-radius: 50%; background: var(--purple); color: white; font-size: 9px; font-weight: 800; counter-increment: step; content: counter(step); }
+    .steps b { color: var(--ink); }
+    .steps span { display: block; margin-top: 1mm; }
+    .toc { list-style: none; margin: 2mm 0; padding: 0; }
+    .toc li { display: flex; gap: 3mm; align-items: baseline; margin: 0; padding: 4mm 0; border-bottom: 1px solid var(--line); font-size: 11px; }
+    .toc .n { color: var(--orange); font-weight: 900; }
+    .toc .leader { flex: 1; border-bottom: 1px dotted #a5a9bd; }
+    .toc .page-no { color: var(--muted); font-size: 9px; }
+    .quote { margin: 7mm 0; padding: 7mm 6mm; border-radius: 4mm; background: var(--pale); color: #3730a3; font-size: 14px; font-weight: 800; line-height: 1.45; text-align: center; }
+    .end-card { margin-top: auto; padding: 6mm; border-radius: 4mm; background: linear-gradient(120deg, #312e81, #7c3aed); color: white; font-size: 10px; line-height: 1.6; }
+    .end-card a { color: #fcd34d; font-weight: 800; }
+    .page-footer { display: flex; justify-content: space-between; margin-top: auto; padding-top: 4mm; border-top: 1px solid var(--line); color: #7c8496; font-size: 8px; }
+    .author { margin-top: 6mm; padding: 4mm; border: 1px solid #ddd6fe; border-radius: 3mm; color: var(--muted); font-size: 9px; line-height: 1.8; }
+    @media print {
+      body { background: #fff; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .toolbar { display: none; }
+      .book { width: auto; margin: 0; }
+      .page { margin: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toolbar" aria-label="Kontrol dokumen"><span>Dokumen A5 siap dicetak sebagai PDF</span><button onclick="window.print()">Cetak / Simpan PDF</button></nav>
+  <main class="book">
+    <section class="page cover">
+      <div class="brand"><div class="brand-mark">L</div><div><strong>LENDORA</strong><small>PERPUSTAKAAN DIGITAL</small></div></div>
+      <div class="cover-main">
+        <div class="eyebrow">E-BOOK PANDUAN WEBSITE</div>
+        <h1>Perpustakaan<br>Digital LENDORA</h1>
+        <p class="cover-sub">Panduan mengenal fitur, teknologi, dan cara menggunakan website perpustakaan digital SMK Negeri 5 Surakarta.</p>
+        <div class="cover-book" aria-hidden="true"><div class="book-shape b1"></div><div class="book-shape b2"></div><div class="book-shape b3"></div></div>
+      </div>
+      <div class="cover-bottom"><strong>Disusun oleh:</strong><br>Nama: ....................................................<br>Kelas: ............................ &nbsp; Program Keahlian: ............................<br>SMK Negeri 5 Surakarta · 2026</div>
+    </section>
+
+    <section class="page">
+      <div class="page-kicker">PANDUAN PEMBACA</div>
+      <h2>Daftar Isi</h2>
+      <p>Kenali tujuan LENDORA dan ikuti panduan untuk menjelajahi katalog serta menggunakan layanan peminjaman.</p>
+      <ol class="toc">
+        <li><span class="n">01</span><span>Pendahuluan</span><span class="leader"></span><span class="page-no">3</span></li>
+        <li><span class="n">02</span><span>Fitur Website</span><span class="leader"></span><span class="page-no">4</span></li>
+        <li><span class="n">03</span><span>Alat dan Bahan Pembuatan</span><span class="leader"></span><span class="page-no">5</span></li>
+        <li><span class="n">04</span><span>Langkah Menggunakan Website</span><span class="leader"></span><span class="page-no">6</span></li>
+        <li><span class="n">05</span><span>Kesimpulan</span><span class="leader"></span><span class="page-no">7</span></li>
+      </ol>
+      <div class="quote">“Membaca hari ini,<br>memimpin hari esok.”</div>
+      <div class="callout"><b>Alamat website:</b><br>https://lendora.infinityfree.me/</div>
+      <div class="page-footer"><span>LENDORA · Panduan Website</span><span>2</span></div>
+    </section>
+
+    <section class="page">
+      <div class="page-kicker">01 · PENDAHULUAN</div>
+      <h2>Perpustakaan,<br>lebih dekat secara digital.</h2>
+      <p>Perpustakaan sekolah membantu siswa memperoleh bahan bacaan dan sumber belajar. Agar informasi koleksi serta layanan lebih mudah dijangkau, LENDORA dikembangkan sebagai website perpustakaan digital SMK Negeri 5 Surakarta.</p>
+      <p>Melalui website ini, siswa dapat melihat katalog, mencari buku, mendaftar atau masuk ke akun, mengajukan peminjaman, serta memeriksa status pinjaman. Admin atau petugas mengelola koleksi dan data, memproses pengajuan, mencatat pengembalian, memverifikasi pembayaran denda, dan menyiapkan laporan.</p>
+      <h3>Tujuan LENDORA</h3>
+      <ul>
+        <li>Mempermudah siswa menemukan informasi buku dan ketersediaan koleksi.</li>
+        <li>Mendukung pengajuan peminjaman melalui website.</li>
+        <li>Membantu petugas mengelola buku, kategori, siswa, dan transaksi dalam satu sistem.</li>
+        <li>Mencatat pengembalian, denda, serta status pembayaran dengan lebih tertata.</li>
+      </ul>
+      <div class="callout">LENDORA adalah sistem pengelolaan dan peminjaman koleksi perpustakaan; website ini bukan layanan membaca buku digital penuh atau toko buku.</div>
+      <div class="page-footer"><span>LENDORA · Pendahuluan</span><span>3</span></div>
+    </section>
+
+    <section class="page">
+      <div class="page-kicker">02 · FITUR WEBSITE</div>
+      <h2>Layanan yang tersedia</h2>
+      <p>Fitur dibagi berdasarkan pengguna. Halaman katalog dan informasi dapat dijelajahi secara publik, sedangkan transaksi dan pengelolaan tertentu memerlukan akun.</p>
+      <div class="feature-grid">
+        <div class="feature"><b>Katalog dan pencarian</b><span>Telusuri buku dan cari berdasarkan judul, penulis, atau penerbit.</span></div>
+        <div class="feature"><b>Detail buku</b><span>Lihat informasi buku, kategori, dan ketersediaan yang tercatat.</span></div>
+        <div class="feature"><b>Akun siswa</b><span>Daftar dan masuk untuk mengakses dashboard serta layanan peminjaman.</span></div>
+        <div class="feature"><b>Pengajuan pinjaman</b><span>Siswa mengajukan buku; admin meninjau dan menyetujui atau menolak.</span></div>
+        <div class="feature"><b>Pengembalian dan denda</b><span>Petugas mencatat pengembalian, kondisi buku, dan denda jika berlaku.</span></div>
+        <div class="feature"><b>Pembayaran dan bukti</b><span>Siswa mengirim bukti untuk diperiksa; admin mengonfirmasi pembayaran.</span></div>
+        <div class="feature"><b>Dashboard dan notifikasi</b><span>Ringkasan aktivitas dan pemberitahuan membantu pengguna mengikuti status.</span></div>
+        <div class="feature"><b>Laporan admin</b><span>Admin melihat riwayat, mengunduh laporan, dan mencetak kuitansi yang tersedia.</span></div>
+      </div>
+      <div class="callout"><b>Catatan pembayaran:</b> QR DANA yang digunakan bersifat statis. Pastikan nominal tagihan dan tujuan pembayaran sesuai petunjuk di website; pembayaran diverifikasi admin, bukan otomatis oleh sistem.</div>
+      <div class="page-footer"><span>LENDORA · Fitur Website</span><span>4</span></div>
+    </section>
+
+    <section class="page">
+      <div class="page-kicker">03 · ALAT DAN BAHAN</div>
+      <h2>Di balik pembuatan website</h2>
+      <p>Pengembangan LENDORA menggabungkan perangkat kerja, perangkat lunak, data perpustakaan, dan aset visual.</p>
+      <h3>Alat dan perangkat lunak</h3>
+      <ul>
+        <li><b>Laptop/komputer:</b> untuk menulis kode dan menjalankan aplikasi.</li>
+        <li><b>Visual Studio Code:</b> editor untuk mengelola kode proyek.</li>
+        <li><b>PHP dan Laravel:</b> menjalankan logika aplikasi dan halaman server.</li>
+        <li><b>MySQL:</b> menyimpan akun, koleksi, kategori, dan transaksi.</li>
+        <li><b>Composer:</b> mengelola paket PHP.</li>
+        <li><b>Node.js dan Vite:</b> membantu proses aset front-end.</li>
+        <li><b>Blade, Tailwind CSS, dan browser:</b> membangun serta memeriksa antarmuka.</li>
+        <li><b>Hosting InfinityFree:</b> menerbitkan website agar dapat dibuka melalui internet.</li>
+      </ul>
+      <h3>Bahan proyek</h3>
+      <ul>
+        <li>Rancangan kebutuhan dan hak akses admin serta siswa.</li>
+        <li>Data contoh buku, kategori, stok, dan informasi peminjaman.</li>
+        <li>Logo sekolah, gambar sampul buku, teks antarmuka, dan aturan layanan.</li>
+        <li>Struktur basis data untuk pengguna, buku, kategori, pinjaman, serta notifikasi.</li>
+      </ul>
+      <div class="callout">Versi teknologi dapat berubah mengikuti konfigurasi proyek. Data contoh sebaiknya digunakan untuk pengembangan, bukan menggantikan data resmi perpustakaan.</div>
+      <div class="page-footer"><span>LENDORA · Alat dan Bahan</span><span>5</span></div>
+    </section>
+
+    <section class="page">
+      <div class="page-kicker">04 · LANGKAH MENGGUNAKAN WEBSITE</div>
+      <h2>Mulai dari katalog</h2>
+      <ol class="steps">
+        <li><b>Buka website</b><span>Kunjungi https://lendora.infinityfree.me/ melalui browser di HP, tablet, atau komputer.</span></li>
+        <li><b>Jelajahi katalog</b><span>Pilih menu katalog untuk melihat buku. Gunakan pencarian dan kategori untuk menemukan koleksi.</span></li>
+        <li><b>Baca detail buku</b><span>Pilih sebuah buku untuk memeriksa informasi dan ketersediaan yang ditampilkan.</span></li>
+        <li><b>Daftar atau masuk</b><span>Untuk layanan siswa, buat akun melalui menu Daftar atau masuk menggunakan akun yang sudah terdaftar.</span></li>
+        <li><b>Ajukan peminjaman</b><span>Pilih buku dan isi tanggal pengajuan sesuai ketentuan. Pengajuan menunggu pemeriksaan admin.</span></li>
+        <li><b>Pantau status</b><span>Periksa dashboard atau riwayat pinjaman dan notifikasi untuk melihat keputusan petugas.</span></li>
+        <li><b>Kembalikan buku</b><span>Kembalikan buku sesuai jadwal. Petugas mencatat tanggal kembali dan kondisi buku.</span></li>
+        <li><b>Ikuti instruksi denda</b><span>Jika ada tagihan, baca metode pembayaran yang tersedia, kirim bukti jika diminta, lalu tunggu verifikasi admin.</span></li>
+      </ol>
+      <div class="callout"><b>Tips:</b> gunakan email dan kata sandi milik sendiri, jangan bagikan kepada orang lain, dan hubungi petugas sekolah jika status transaksi atau data akun perlu diperbaiki.</div>
+      <div class="page-footer"><span>LENDORA · Panduan Penggunaan</span><span>6</span></div>
+    </section>
+
+    <section class="page">
+      <div class="page-kicker">05 · KESIMPULAN</div>
+      <h2>Belajar dan membaca,<br>semakin mudah dijangkau.</h2>
+      <p>LENDORA menghubungkan katalog perpustakaan dengan proses layanan siswa dan petugas melalui website. Pencarian koleksi, pengajuan pinjaman, pemantauan status, pengelolaan data, pencatatan pengembalian, dan pelaporan berada dalam satu sistem.</p>
+      <p>Pengembangan selanjutnya dapat berfokus pada pengujian yang lebih menyeluruh, peningkatan aksesibilitas, pembaruan katalog, dan penyempurnaan pengalaman penggunaan. Ketepatan data serta verifikasi petugas tetap penting untuk menjaga layanan berjalan baik.</p>
+      <div class="quote">“Buku membuka jendela pengetahuan.<br>LENDORA membantu kita menemukannya.”</div>
+      <div class="end-card"><b>Kunjungi LENDORA</b><br>https://lendora.infinityfree.me/<br><br>Perpustakaan Digital SMK Negeri 5 Surakarta</div>
+      <div class="author">Catatan penyusun: lengkapi nama, kelas, dan program keahlian pada halaman judul sebelum dikumpulkan.</div>
+      <div class="page-footer"><span>LENDORA · Akhir E-Book</span><span>7</span></div>
+    </section>
+  </main>
+</body>
+</html>

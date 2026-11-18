@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1900" viewBox="0 0 1000 1900" role="img" aria-labelledby="title desc">
+  <title id="title">Infografik Timeline Proyek LENDORA</title>
+  <desc id="desc">Poster perjalanan pembuatan website perpustakaan digital LENDORA dalam tujuh bagian.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c7d2fe"/>
+      <stop offset=".34" stop-color="#eef2ff"/>
+      <stop offset=".68" stop-color="#e0e7ff"/>
+      <stop offset="1" stop-color="#e9d5ff"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#312e81"/>
+      <stop offset=".55" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="timeline" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset=".52" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#fb923c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#ec4899"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#3730a3" flood-opacity=".14"/>
+    </filter>
+    <style>
+      .sans { font-family: "Aptos", "Segoe UI", Arial, sans-serif; }
+      .ink { fill: #1e1b4b; }
+      .muted { fill: #5b5b82; }
+      .card { fill: #ffffff; stroke: #e0e7ff; stroke-width: 2; }
+      .heading { font-size: 27px; font-weight: 750; letter-spacing: .2px; }
+      .body { font-size: 20px; font-weight: 450; }
+      .num { font-size: 28px; font-weight: 800; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="1900" fill="url(#bg)"/>
+  <circle cx="970" cy="100" r="220" fill="#a5b4fc" opacity=".36"/>
+  <circle cx="24" cy="1660" r="230" fill="#c4b5fd" opacity=".35"/>
+  <circle cx="896" cy="840" r="150" fill="#fbcfe8" opacity=".32"/>
+
+  <rect x="54" y="48" width="892" height="244" rx="30" fill="url(#hero)"/>
+  <path d="M54 246 Q54 292 100 292 H946 V270 H100 Q76 270 76 246 V78 Q76 70 84 70 H916 V48 H82 Q54 48 54 76Z" fill="#f59e0b"/>
+  <g transform="translate(88 98)">
+    <rect x="0" y="0" width="102" height="112" rx="20" fill="#fbbf24"/>
+    <path d="M50 24 C34 17 20 20 13 25 V83 C24 77 39 79 50 86 C61 79 76 77 87 83 V25 C78 20 64 17 50 24Z" fill="#fffefa" stroke="#312e81" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M50 25 V85" stroke="#312e81" stroke-width="3"/>
+    <path d="M24 39 H42 M24 49 H42 M58 39 H76 M58 49 H76" stroke="#818cf8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M14 93 H87" stroke="#312e81" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <text x="220" y="91" class="sans" font-size="16" font-weight="700" letter-spacing="2.4" fill="#ddd6fe">PROYEK WEBSITE PERPUSTAKAAN SEKOLAH</text>
+  <text x="218" y="158" class="sans" font-size="57" font-weight="850" letter-spacing="1.5" fill="#fffefa">TIMELINE</text>
+  <text x="220" y="211" class="sans" font-size="37" font-weight="800" letter-spacing="2" fill="#fcd34d">LENDORA</text>
+  <text x="221" y="250" class="sans" font-size="18" font-weight="450" fill="#eef2ff">Dari kebutuhan perpustakaan menjadi layanan digital</text>
+
+  <path d="M500 337 V1722" fill="none" stroke="url(#timeline)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- 01 -->
+  <g filter="url(#shadow)">
+    <rect x="62" y="337" width="390" height="170" rx="20" class="card"/>
+    <rect x="62" y="337" width="8" height="170" rx="4" fill="url(#warm)"/>
+  </g>
+  <circle cx="500" cy="382" r="22" fill="url(#warm)" stroke="#eef2ff" stroke-width="7"/>
+  <text x="90" y="380" class="sans num" fill="#f97316">01</text>
+  <text x="148" y="380" class="sans heading ink">LATAR BELAKANG</text>
+  <text x="90" y="422" class="sans body ink">
+    <tspan x="90" dy="0">Website perpustakaan membantu siswa</tspan>
+    <tspan x="90" dy="26">mencari dan meminjam buku.</tspan>
+    <tspan x="90" dy="26">LENDORA membantu petugas mengelola</tspan>
+    <tspan x="90" dy="26">layanan perpustakaan secara digital.</tspan>
+  </text>
+
+  <!-- 02 -->
+  <g filter="url(#shadow)">
+    <rect x="548" y="517" width="390" height="170" rx="20" class="card"/>
+    <rect x="930" y="517" width="8" height="170" rx="4" fill="url(#accent)"/>
+  </g>
+  <circle cx="500" cy="562" r="22" fill="url(#accent)" stroke="#eef2ff" stroke-width="7"/>
+  <text x="576" y="560" class="sans num" fill="#6366f1">02</text>
+  <text x="634" y="560" class="sans heading ink">TUJUAN PROYEK</text>
+  <text x="576" y="601" class="sans body ink">
+    <tspan x="576" dy="0">Memudahkan siswa mencari buku dan</tspan>
+    <tspan x="576" dy="26">mengajukan pinjaman secara online.</tspan>
+    <tspan x="576" dy="26">Petugas mengelola koleksi, pengembalian,</tspan>
+    <tspan x="576" dy="26">serta pencatatan denda dengan tertib.</tspan>
+  </text>
+
+  <!-- 03 -->
+  <g filter="url(#shadow)">
+    <rect x="62" y="697" width="390" height="235" rx="20" class="card"/>
+    <rect x="62" y="697" width="8" height="235" rx="4" fill="url(#accent)"/>
+  </g>
+  <circle cx="500" cy="742" r="22" fill="url(#accent)" stroke="#eef2ff" stroke-width="7"/>
+  <text x="90" y="740" class="sans num" fill="#6366f1">03</text>
+  <text x="148" y="740" class="sans heading ink">TIMELINE PEMBUATAN</text>
+  <text x="91" y="782" class="sans body ink">
+    <tspan x="91" dy="0"><tspan font-weight="800">1.</tspan> Analisis kebutuhan pengguna.</tspan>
+    <tspan x="91" dy="32"><tspan font-weight="800">2.</tspan> Rancang halaman dan basis data.</tspan>
+    <tspan x="91" dy="32"><tspan font-weight="800">3.</tspan> Bangun katalog, akun, dashboard,</tspan>
+    <tspan x="112" dy="27">peminjaman, pengembalian, denda.</tspan>
+    <tspan x="91" dy="29"><tspan font-weight="800">4.</tspan> Perbaiki tampilan, kuitansi, PDF.</tspan>
+  </text>
+
+  <!-- 04 -->
+  <g filter="url(#shadow)">
+    <rect x="548" y="952" width="390" height="180" rx="20" class="card"/>
+    <rect x="930" y="952" width="8" height="180" rx="4" fill="url(#warm)"/>
+  </g>
+  <circle cx="500" cy="997" r="22" fill="url(#warm)" stroke="#eef2ff" stroke-width="7"/>
+  <text x="576" y="995" class="sans num" fill="#f97316">04</text>
+  <text x="634" y="995" class="sans heading ink">QUALITY CONTROL</text>
+  <text x="576" y="1037" class="sans body ink">
+    <tspan x="576" dy="0">Periksa pencarian, hak akses, transaksi,</tspan>
+    <tspan x="576" dy="26">tampilan ponsel, kuitansi, dan laporan.</tspan>
+    <tspan x="576" dy="26">Tes otomatis masih perlu dilengkapi.</tspan>
+  </text>
+
+  <!-- 05 -->
+  <g filter="url(#shadow)">
+    <rect x="62" y="1152" width="390" height="180" rx="20" class="card"/>
+    <rect x="62" y="1152" width="8" height="180" rx="4" fill="url(#warm)"/>
+  </g>
+  <circle cx="500" cy="1197" r="22" fill="url(#warm)" stroke="#eef2ff" stroke-width="7"/>
+  <text x="90" y="1195" class="sans num" fill="#ec4899">05</text>
+  <text x="148" y="1195" class="sans heading ink">TANTANGAN</text>
+  <text x="90" y="1237" class="sans body ink">
+    <tspan x="90" dy="0">Merapikan pencarian dan sampul buku,</tspan>
+    <tspan x="90" dy="26">menyesuaikan tabel untuk ponsel,</tspan>
+    <tspan x="90" dy="26">mengatasi kendala GD pada PDF, serta</tspan>
+    <tspan x="90" dy="26">QR pembayaran yang masih statis.</tspan>
+  </text>
+
+  <!-- 06 -->
+  <g filter="url(#shadow)">
+    <rect x="548" y="1352" width="390" height="170" rx="20" class="card"/>
+    <rect x="930" y="1352" width="8" height="170" rx="4" fill="url(#accent)"/>
+  </g>
+  <circle cx="500" cy="1397" r="22" fill="url(#accent)" stroke="#eef2ff" stroke-width="7"/>
+  <text x="576" y="1395" class="sans num" fill="#6366f1">06</text>
+  <text x="634" y="1395" class="sans heading ink">REFLEKSI PROYEK</text>
+  <text x="576" y="1437" class="sans body ink">
+    <tspan x="576" dy="0">Masukan membantu menemukan bagian</tspan>
+    <tspan x="576" dy="26">yang perlu diperbaiki. Proyek ini juga</tspan>
+    <tspan x="576" dy="26">mengajarkan pentingnya menguji alur,</tspan>
+    <tspan x="576" dy="26">bukan hanya mempercantik tampilan.</tspan>
+  </text>
+
+  <!-- 07 -->
+  <g filter="url(#shadow)">
+    <rect x="62" y="1542" width="390" height="175" rx="20" class="card"/>
+    <rect x="62" y="1542" width="8" height="175" rx="4" fill="url(#warm)"/>
+  </g>
+  <circle cx="500" cy="1587" r="22" fill="url(#warm)" stroke="#eef2ff" stroke-width="7"/>
+  <text x="90" y="1585" class="sans num" fill="#f97316">07</text>
+  <text x="148" y="1585" class="sans heading ink">EVALUASI PROYEK</text>
+  <text x="90" y="1627" class="sans body ink">
+    <tspan x="90" dy="0">Fitur inti dan beberapa perbaikan</tspan>
+    <tspan x="90" dy="26">telah dikembangkan. Tahap selanjutnya:</tspan>
+    <tspan x="90" dy="26">lengkapi pengujian dan uji aplikasi</tspan>
+    <tspan x="90" dy="26">pada perangkat pengguna.</tspan>
+  </text>
+
+  <rect x="62" y="1742" width="876" height="125" rx="20" fill="url(#hero)"/>
+  <text x="92" y="1782" class="sans" font-size="24" font-weight="800" fill="#fcd34d">LENDORA</text>
+  <text x="92" y="1818" class="sans" font-size="20" font-weight="450" fill="#fffefa">Perpustakaan digital SMK Negeri 5 Surakarta</text>
+  <text x="92" y="1847" class="sans" font-size="17" font-weight="450" fill="#e0e7ff">Timeline tahapan proyek — tanpa tanggal karena jadwal rinci tidak tercatat.</text>
+  <path d="M822 1775 h58 v58 h-58z" fill="none" stroke="#c7d2fe" stroke-width="2"/>
+  <path d="M835 1789 h32 M835 1803 h32 M835 1817 h22" stroke="#c7d2fe" stroke-width="2" stroke-linecap="round"/>
+</svg>
